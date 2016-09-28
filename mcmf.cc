@@ -1,17 +1,5 @@
-#include <functional>
-#include <queue>
-#include <limits>
-#include <vector>
-#include <algorithm>
-
-using namespace std;
-
-// tests
-// Kaka's matrix travel (POJ)
-// https://www.acmicpc.net/problem/8992
-// SRM 506 mid
-// ACM-ICPC World Finals 2015 C Catering
-
+// from https://gtihub.com/kcm1700/algorithms
+//
 // precondition: there is no negative cycle.
 // usage:
 //  MinCostFlow mcf(n);

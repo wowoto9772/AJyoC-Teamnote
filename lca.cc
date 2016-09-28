@@ -1,3 +1,4 @@
+// from github.com/kcm1700/algorithms
 /* 사용법: 포레스트인 그래프가 있다고 가정. 
  * precalc_lca()의 인자로 트리의 루트로 삼을 것들이 들어간다. 
  * gnext를 채우고, precalc_lca(루트목록) 호출, 필요할 때마다

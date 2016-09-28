@@ -1,12 +1,4 @@
-#include <vector>
-#include <cstdio>
-#include <limits.h>
-#include <algorithm>
-
-using namespace std;
-
 using ll = long long;
-
 using VI = vector<int>;
 using VII = vector< pair<int,int> >;
 using VL = vector<ll>;
@@ -19,17 +11,13 @@ int mod(int a, int b){
 }
 
 int gcd(int a, int b){
-
     int m = 1;
-
     while(m){
         m = a % b;
         a = b;
         b = m;
     }
-
     return m;
-
 }
 
 int extended_gcd(int a, int b, int &x, int &y) {
@@ -78,18 +66,6 @@ PIL extended_gcd(ll a, ll b) {
     return {t.second, t.first - t.second * (a / b)};
 }
 
-int extended_gcd(int a, int b, int &x, int &y) {
-    int xx = y = 0;
-    int yy = x = 1;
-    while (b) {
-        int q = a / b;
-        int t = b; b = a%b; a = t;
-        t = xx; xx = x - q*xx; x = t;
-        t = yy; yy = y - q*yy; y = t;
-    }
-    return a;
-}
-
 /* Find x in [0,m) s.t. ax ≡ gcd(a, m) (mod m)
  * Dependencies: extended_gcd(a, b) */
 ll modinverse(ll a, ll m) {
@@ -98,14 +74,11 @@ ll modinverse(ll a, ll m) {
 
 /* Find a^p mod m */
 ll modpower(ll a, ll p, ll m){
-
     ll r = 1;
-
     while(p){
         if(p&1)r = (r*a) % m;
         a = (a*a) % m;
         p >>= 1;
     }
-
     return r;
 }

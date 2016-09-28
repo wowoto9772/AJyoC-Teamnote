@@ -1,18 +1,11 @@
-#include <vector>
-#include <stdio.h>
-#include <algorithm>
-
-using namespace std;
+// Author : wowoto9772
 
 class BIT{
 public:
 	vector <int> T;
 	int S;
 	
-	BIT(const int n){
-		S = n;
-		T.resize(S + 1);
-	}
+	BIT(int n) : S(n), T(n+1) {}
 
 	void Update(int p, int v){
 		while (p <= S){
@@ -26,14 +19,14 @@ public:
 		while (p > 0){
 			ret += T[p];
 			p -= p & (-p);
-		}return ret;
+		}
+        return ret;
 	}
 };
 
 class BIT_2d{
 public:
 	long long T[3003][3003];
-
 	int N, M;
 
 	void update(int x, int y, int val){
@@ -65,7 +58,4 @@ public:
 		// read(r1, c1, r2, c2) = read(r2, c2) - read(r2, c1 - 1) - read(r1 - 1, c2) + read(r1 - 1, c1 - 1);
 		return read(r2, c2) - read(r2, c1 - 1) - read(r1 - 1, c2) + read(r1 - 1, c1 - 1);
 	}
-
-	// cf) make) dp[i][j] = dp[i - 1][j] + dp[i][j - 1] - dp[i - 1][j - 1] + V[i][j]
-	//    value) S = dp[r2][c2] - dp[r2][c1 - 1] - dp[r1 - 1][c2] + dp[r1 - 1][c1 - 1];
 };

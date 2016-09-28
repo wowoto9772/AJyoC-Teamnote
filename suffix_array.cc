@@ -1,12 +1,7 @@
-#include <stdio.h>
-#include <string.h>
-#include <vector>
-#include <algorithm>
-
-using namespace std;
-
+// from blog.myungwoo.kr
+// lcp[i] : lcp. i strat with 2
+// suffix[i] : start with 1
 #define MAXN 500005
-
 int N;
 int SA[MAXN], lcp[MAXN];
 char S[MAXN];
@@ -29,7 +24,10 @@ void SuffixArray()
         for (i = N; i; i--) SA[cnt[x[y[i]]]--] = y[i];
         swap(x, y); p = 1; x[SA[1]] = 1;
         for (i = 1; i<N; i++)
-            x[SA[i + 1]] = SA[i] + len <= N && SA[i + 1] + len <= N && y[SA[i]] == y[SA[i + 1]] && y[SA[i] + len] == y[SA[i + 1] + len] ? p : ++p;
+            x[SA[i + 1]] = SA[i] + len <= N && \
+                           SA[i + 1] + len <= N && \
+                           y[SA[i]] == y[SA[i + 1]] && \
+                           y[SA[i] + len] == y[SA[i + 1] + len] ? p : ++p;
     }
 }
 
@@ -46,13 +44,7 @@ int main()
 {
     int i;
     scanf("%s", S + 1); N = strlen(S + 1);
-
     SuffixArray(); LCP();
-
     for (i = 1; i <= N; i++) printf("%d ", SA[i]); 
-
-    printf("\n");
-
     for (i = 2; i <= N; i++) printf(" %d", lcp[i]); 
-
 }
