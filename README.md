@@ -1,2 +1,1 @@
-# AJyoC-Teamnote
-ACM-ICPC team AJyoC++ teamnote
+# source : kcm1700, myungwoo, wowoto9772
