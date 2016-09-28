@@ -27,8 +27,7 @@ struct AP {
         }
     }
     void solve() {
-        for(int i=1; i<=n; ++i) {
+        for(int i=1; i<=n; ++i)
             if(!c[i]) dfs(i);
-        }
     }
 }
