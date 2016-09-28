@@ -1,13 +1,4 @@
-#include <vector>
-#include <climits>
-#include <algorithm>
-#include <cstdio>
-#include <memory.h>
-#include <limits>
-#include <queue>
-
-using namespace std;
-
+// from https://github.com/kcm1700/algorithms
 // usage:
 // MaxFlowDinic::Init(n);
 // MaxFlowDinic::AddEdge(0, 1, 100, 100); // for bidirectional edge

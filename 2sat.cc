@@ -1,8 +1,3 @@
-#include <algorithm>
-#include <vector>
-
-using namespace std;
-
 // usage
 // TwoSat ts;
 // ts.init(n);
