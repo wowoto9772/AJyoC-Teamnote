@@ -1,127 +1,34 @@
-#include <stdio.h>
-
-#include <vector>
-
-#include <algorithm>
-
-using namespace std;
-
-#define NMAX 10003
-
-vector<int> a[NMAX];
-
-bool c[NMAX];
-
-int low[NMAX];
-
-int num[NMAX];
-
-int parent[NMAX];
-
-int cnt = 0;
-
-bool cut[NMAX];
-
-void dfs(int x) {
-
-    c[x] = true;
-
-    num[x] = ++cnt;
-
-    low[x] = cnt;
-
-    int children = 0;
-
-    for (int i = 0; i < a[x].size(); i++) {
-
-        int y = a[x][i];
-
-        if (c[y] == false) {
-
-            children += 1;
-
-            parent[y] = x;
-
-            dfs(y);
-
-            low[x] = min(low[x], low[y]);
-
-            if (!parent[x] && children >= 2) {
-
-                cut[x] = true;
-
-            }
-
-            if (parent[x] && low[y] >= num[x]) {
-
-                cut[x] = true;
-
-            }
-
+// Articulation Point, 1-based
+// adj : adjcent list
+// AP(int N) : N is vertex number
+// cut[i] : true if i th vertex = AP
+struct AP {
+    vector<int> adj, low, dfn, parent;
+    vector<bool> c, cut;
+    int cnt, n;
+    AP(int N) : n(N), adj(N+1), low(N+1, 0), dfn(N+1, 0), 
+                parent(N+1, 0), c(N+1, false), cut(N+1, false),
+                cnt(0) {}
+    void dfs(int x) {
+        int children = 0;
+        c[x] = true;
+        dfn[x] = ++cnt;
+        low[x] = cnt;
+        for (int i = 0; i < adj[x].size(); i++) {
+            int y = adj[x][i];
+            if (c[y] == false) {
+                children ++;
+                parent[y] = x;
+                dfs(y);
+                low[x] = min(low[x], low[y]);
+                if (!parent[x] && children >= 2) cut[x] = true;
+                if (parent[x] && low[y] >= dfn[x]) cut[x] = true;
+            } else if (y != parent[x]) low[x] = min(low[x], dfn[y]);
         }
-        else if (y != parent[x]) {
-
-            low[x] = min(low[x], num[y]);
-
-        }
-
     }
-
+    void solve() {
+        for(int i=1; i<=n; ++i) {
+            if(!c[i]) dfs(i);
+        }
+    }
 }
-
-int main() {
-
-    int n, m;
-
-    scanf("%d %d", &n, &m);
-
-    while (m--) {
-
-        int u, v;
-
-        scanf("%d %d", &u, &v);
-
-        a[u].push_back(v);
-
-        a[v].push_back(u);
-
-    }
-
-    for (int i = 1; i <= n; i++) {
-
-        if (c[i] == false) {
-
-            dfs(i);
-
-        }
-
-    }
-
-    int ans = 0;
-
-    for (int i = 1; i <= n; i++) {
-
-        if (cut[i]) {
-
-            ans += 1;
-
-        }
-
-    }
-
-    printf("%d\n", ans);
-
-    for (int i = 1; i <= n; i++) {
-
-        if (cut[i]) {
-
-            printf("%d ", i);
-
-        }
-
-    }
-
-    return 0;
-
-}
-
