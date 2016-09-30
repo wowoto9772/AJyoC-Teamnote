@@ -51,36 +51,6 @@ bool meets(const edge &L, const edge &R){
     return false;
 }
 
-class ConvexHull {
-    public:
-        int n;
-        vector <point> v, u, d;
-        vector <point> c;
-        ConvexHull(int _n) : n(_n), v(_n), u(_n), d(_n), c(_n*2) {}
-        
-        /* return convex hull's size. and v-1 is the number of convex hull's points */
-        int solve() {
-            int iu, id;
-            id = iu = -1;
-            sort(v.begin(), v.end());
-            int cnt;
-            
-            for (int i = 0; i < n; i++) {
-                while (iu > 0 && ccw(u[iu - 1], u[iu], v[i]) >= 0) iu--;
-                u[++iu] = v[i];
-                while (id > 0 && ccw(d[id - 1], d[id], v[i]) <= 0) id--;
-                d[++id] = v[i];
-            }
-            for (cnt = 0; cnt <= iu; cnt++) {
-                c[cnt] = u[cnt];
-            }
-            for (int i = id - 1; i >= 0; i--) {
-                c[cnt++] = d[i];
-            }
-            return cnt;
-        }
-};
-
 ll getDistance(point a, point b) {
     return (a.x - b.x)*(a.x - b.x) + (a.y - b.y)*(a.y - b.y);
 }
