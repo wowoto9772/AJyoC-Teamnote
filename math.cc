@@ -62,7 +62,7 @@ PII chinese_remainder_theorem(const VI &m, const VI &r) {
  * Dependencies: none */
 PLL extended_gcd(ll a, ll b) {
     if (b == 0) return make_pair(1, 0);
-    PIL t = extended_gcd(b, a % b);
+    PLL t = extended_gcd(b, a % b);
     return {t.second, t.first - t.second * (a / b)};
 }
 
