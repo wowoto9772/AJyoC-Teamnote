@@ -7,13 +7,13 @@ struct point{
     }
 };
 
-class edge{
+struct edge{
     point A, B;
     edge(){}
     edge(point _A, point _B) : A(_A), B(_B){}
 };
 
-int ccw(point &a, point &b, point &c) {
+int ccw(const point &a, const point &b, const point &c) {
     ll dx1, dx2, dy1, dy2;
     dx1 = b.x - a.x;
     dy1 = b.y - a.y;
