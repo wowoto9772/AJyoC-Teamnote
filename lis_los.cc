@@ -34,7 +34,6 @@ int los(const vector <int> &a) {
             if (b[m] < n) {
                 b.push_back(n);
                 d++;
-                2
             }
             else {
                 if (b[m] > n) {
